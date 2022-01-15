@@ -1,18 +1,24 @@
 //Packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs');
-const markdown = require('./utilities/generateMarkdown');
+const cardMaker = require('./utilities/generateCards');
 
 //Questions for user input 
 const questions = [
     {
+        type: 'list',
+        message: "Choose a role title for this team member.",
+        choices: ['Manager', 'Engineer', 'Intern'],
+        name: 'role'
+    },
+    {
         type: 'input',
-        message: "What is the title of your project?",
-        name: 'title',
-        default: 'Project Title',
+        message: "Please enter the team member's name.",
+        name: 'name',
+        default: 'Sam',
         validate: function (answer) {
             if (answer.length < 1) {
-                return console.log("A valid project title is required.");
+                return console.log("A name is required.");
             }
             return true;
         }
@@ -31,55 +37,45 @@ const questions = [
     },
     {
         type: 'input',
-        message: "Describe the steps required for installation.",
-        name: 'installation'
+        message: "Please enter the teammate's ID number.",
+        name: 'id',
+        default: '2',
     },
     {
         type: 'input',
-        message: "Please describe the usage of your project.",
-        name: 'usage',
-        default: 'Project Usage',
-    },
-    {
-        type: 'list',
-        message: "Choose a license for your project.",
-        choices: ['Mozilla Public License 2.0', 'Apache License 2.0', 'MIT License', 'Boost Software License 1.0', 'none'],
-        name: 'license'
+        message: "Please provide the office number for this manager.",
+        name: 'office',
+        default: '3'
     },
     {
         type: 'input',
-        message: "Please describe any relevant contributors, or how users can contribute to your project.",
-        name: 'contributing'
-    },
-    {
-        type: 'input',
-        message: "If applicable, provide any tests written for your application.",
-        name: 'tests'
+        message: "Enter the student's school name.",
+        name: 'school',
+        default: 'Unversity of Washington'
     },
  
     {
         type: 'input',
-        message: "What is your GitHub username? (No @ needed)",
+        message: "What is the teammate's GitHub username? (No @ needed)",
         name: 'github',
         default: 'chandrapanda',
     },
     {
         type: 'input',
-        message: "What is your email address?",
+        message: "What is the teammate's email address?",
         name: 'email',
         default: 'chandra_holt@hotmail.com',
     }
 ];
 
 
-//Function to write README file
-function writeReadMe() {
+//Function to write HTML file
+function makeHTML() {
     inquirer
         .prompt(questions)
         .then((responses) => {
             console.log(responses);
-            const myMarkdown = markdown(responses.license);
-            fs.writeFile('newREADME.md', `# ${responses.title}
+            fs.writeFile('index.html', `# ${responses.title}
 
 ## Description
 ${responses.description}
