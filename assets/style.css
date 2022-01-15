@@ -1,0 +1,15 @@
+body {
+    background-color: rgb(184, 228, 243);
+    color: darkblue;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+.card {
+    margin: 30px;
+}
+
+#card-container {
+    display: flex;
+    flex-direction: row;
+}
