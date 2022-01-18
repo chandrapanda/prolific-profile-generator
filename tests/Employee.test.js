@@ -1,3 +1,17 @@
+const Employee = require("../employees/Employee");
+
+describe("printInfo", () => {
+    it("should console log the employee's name, ID number, and email", () => {
+        const Employee = [
+            {}
+        ]
+    })
+}
+
+
+
+
+
 // const axios = require("axios");
 // const MovieSearch = require("../movieSearch");
 
