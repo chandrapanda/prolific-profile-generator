@@ -1,12 +1,14 @@
-const Employee = require("../employees/Employee");
+// const { expect } = require("@jest/globals");
+// const Employee = require("../employees/Employee");
 
-describe("printInfo", () => {
-    it("should console log the employee's name, ID number, and email", () => {
-        const Employee = [
-            {}
-        ]
-    })
-}
+// describe("printInfo", () => {
+//     it("should console log the employee's name, ID number, and email", () => {
+//         const Employee = [
+//             { name: 'ASDF', id: '8', email: 'you@you.com'}
+//             expect()
+//         ]
+//     })
+// }
 
 
 
