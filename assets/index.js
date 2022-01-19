@@ -70,7 +70,7 @@ const engineerQuestions = [
         type: 'input',
         message: "What is the engineer's email address?",
         name: 'email',
-        default: 'chandra_holt@hotmail.com',
+        default: 'sam@hotmail.com',
         validate: function (answer) {
             if (answer.length < 1) {
                 return console.log("An email address is required.");
@@ -122,7 +122,7 @@ const internQuestions = [
         type: 'input',
         message: "What is the intern's email address?",
         name: 'email',
-        default: 'chandra_holt@hotmail.com',
+        default: 'sam@hotmail.com',
         validate: function (answer) {
             if (answer.length < 1) {
                 return console.log("An email address is required.");
@@ -186,7 +186,7 @@ const managerQuestions = [
         type: 'input',
         message: "What is the manager's email address?",
         name: 'email',
-        default: 'chandra_holt@hotmail.com',
+        default: 'sam@hotmail.com',
         validate: function (answer) {
             if (answer.length < 1) {
                 return console.log("An email address is required.");
@@ -243,7 +243,7 @@ function askToAddTeamMembers() {
                 <meta http-equiv="X-UA-Compatible" content="IE=edge">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
-                <link rel="stylesheet" href="assets/style.css">
+                <link rel="stylesheet" href="./style.css">
                 <title>Profile Generator</title>
             </head>
             <body>
@@ -253,21 +253,23 @@ function askToAddTeamMembers() {
                     <hr class="my-4">
                   </div>
                   <div id="card-container" class="container">
+                  ${generateCards()}
                   </div>
                 </div>
             </body>
             <script src="assets/index.js"></script>
-            </html>`)
-        } else if (input.answer == 'Yes') {
+            </html>`, function(err) {
+                if (err) throw err;
+                console.log('We made it!');
+            }
+            )} else if (input.answer == 'Yes') {
             askRole();
 }
 
 function generateCards() {
-    employeeArray.reduce((employee, index) => {
-        generateCard(employee);
-
-
-    }) 
+    return employeeArray.map((employee) => {
+        return generateCard(employee);
+    }).join("");
 };
 
 function generateCard(employee) {
@@ -282,7 +284,7 @@ function generateCard(employee) {
         <path d="M1 2a1 1 0 0 1 1-1h11a1 1 0 0 1 1 1v1h.5A1.5 1.5 0 0 1 16 4.5v7a1.5 1.5 0 0 1-1.5 1.5h-.55a2.5 2.5 0 0 1-2.45 2h-8A2.5 2.5 0 0 1 1 12.5V2zm13 10h.5a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.5-.5H14v8zM13 2H2v10.5A1.5 1.5 0 0 0 3.5 14h8a1.5 1.5 0 0 0 1.5-1.5V2z"></path>
       </svg>`;
     } else if ( employee instanceof Engineer) {
-        characteristic = `GitHub: ${employee.getGithub()}`;
+        characteristic = `<a target="_blank" href="https://www.github.com/${employee.getGithub()}" class="card-link">GitHub: ${employee.getGithub()}</a>`;
         cardTitle = "Engineer";
         employeeIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eyeglasses" viewBox="0 0 16 16">
         <path d="M4 6a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm2.625.547a3 3 0 0 0-5.584.953H.5a.5.5 0 0 0 0 1h.541A3 3 0 0 0 7 8a1 1 0 0 1 2 0 3 3 0 0 0 5.959.5h.541a.5.5 0 0 0 0-1h-.541a3 3 0 0 0-5.584-.953A1.993 1.993 0 0 0 8 6c-.532 0-1.016.208-1.375.547zM14 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"></path>
@@ -304,8 +306,8 @@ function generateCard(employee) {
     </div>
     <ul class="list-group list-group-flush">
       <li class="list-group-item">ID: ${employee.getId()}</li>
-      <li class="list-group-item">  <a href="mailto:${employee.getEmail()}" class="card-link">Email : ${employee.getEmail()}</a></li>
-      <li class="list-group-item">${characteristic}}</li>
+      <li class="list-group-item"> Email: <a href="mailto:${employee.getEmail()}" class="card-link"> ${employee.getEmail()}</a></li>
+      <li class="list-group-item">${characteristic}</li>
     </ul>
     <div class="card-body">
     </div>
