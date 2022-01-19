@@ -1,4 +1,5 @@
-const Employee = require("../employees/Employee");
+const Employee = require("../../employees/Employee");
+
 const employee = new Employee(8, "Tara", "tara@icloud.com", "employee");
 
 describe("Employee class", () => {
