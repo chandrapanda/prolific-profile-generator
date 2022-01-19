@@ -5,6 +5,7 @@ const Manager = require('../employees/Manager');
 const Intern = require('../employees/Intern');
 const Engineer = require('../employees/Engineer');
 
+//Array to store employees entered by user
 const employeeArray = [];
 
 
@@ -30,7 +31,7 @@ const roleQuestion = [
     {
         type: 'list',
         message: "Choose a role title for this team member.",
-        choices: ['Manager', 'Engineer', 'Intern'],
+        choices: ['Engineer', 'Intern'],
         name: 'role',
         validate: function (answer) {
             if (answer.length < 1) {
@@ -266,6 +267,7 @@ function askToAddTeamMembers() {
             askRole();
 }
 
+//Builds employee info cards based on user input
 function generateCards() {
     return employeeArray.map((employee) => {
         return generateCard(employee);
@@ -283,8 +285,8 @@ function generateCard(employee) {
         employeeIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cup" viewBox="0 0 16 16">
         <path d="M1 2a1 1 0 0 1 1-1h11a1 1 0 0 1 1 1v1h.5A1.5 1.5 0 0 1 16 4.5v7a1.5 1.5 0 0 1-1.5 1.5h-.55a2.5 2.5 0 0 1-2.45 2h-8A2.5 2.5 0 0 1 1 12.5V2zm13 10h.5a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.5-.5H14v8zM13 2H2v10.5A1.5 1.5 0 0 0 3.5 14h8a1.5 1.5 0 0 0 1.5-1.5V2z"></path>
       </svg>`;
-    } else if ( employee instanceof Engineer) {
-        characteristic = `<a target="_blank" href="https://www.github.com/${employee.getGithub()}" class="card-link">GitHub: ${employee.getGithub()}</a>`;
+    } else if (employee instanceof Engineer) {
+        characteristic = `GitHub: <a target="_blank" href="https://www.github.com/${employee.getGithub()}" class="card-link"> ${employee.getGithub()}</a>`;
         cardTitle = "Engineer";
         employeeIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eyeglasses" viewBox="0 0 16 16">
         <path d="M4 6a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm2.625.547a3 3 0 0 0-5.584.953H.5a.5.5 0 0 0 0 1h.541A3 3 0 0 0 7 8a1 1 0 0 1 2 0 3 3 0 0 0 5.959.5h.541a.5.5 0 0 0 0-1h-.541a3 3 0 0 0-5.584-.953A1.993 1.993 0 0 0 8 6c-.532 0-1.016.208-1.375.547zM14 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"></path>
@@ -321,10 +323,7 @@ function askRole() {
         .prompt(roleQuestion)
         .then((input) => {
             console.log(input);
-            if (input.role == 'Manager') {
-                console.log('This is a manager.');
-                askManager();
-            } else if (input.role == 'Engineer') {
+            if (input.role == 'Engineer') {
                 console.log('This is an engineer.');
                 askEngineer();
             } else if (input.role == 'Intern') {
@@ -337,5 +336,5 @@ function askRole() {
 };
 
 // Function call to initialize app
-askToAddTeamMembers();
+askManager();
 

@@ -6,11 +6,6 @@ class Employee {
       this.role = role;
 
     }
-
-    printInfo() {
-        console.log(`${this.name}'s ID number is ${this.id}'`);
-        console.log(`The employee's email is ${this.email}`);
-        }
         
     getName() {
         return this.name;
@@ -28,10 +23,7 @@ class Employee {
         return this.role;
     }
 
-
   };
-
-
 
   module.exports = Employee;
   
