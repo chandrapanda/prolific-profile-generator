@@ -8,9 +8,6 @@ const Engineer = require('../employees/Engineer');
 //Array to store employees entered by user
 const employeeArray = [];
 
-
-//TODO: Combine following 2 functions to prompt for manager name and THEN ask for intern, engineer, or finish building team
-
 //Questions for user input 
 const addTeamMembers = [
     {
@@ -324,10 +321,8 @@ function askRole() {
         .then((input) => {
             console.log(input);
             if (input.role == 'Engineer') {
-                console.log('This is an engineer.');
                 askEngineer();
             } else if (input.role == 'Intern') {
-                console.log('This is an intern.');
                 askIntern();
             }
         })
